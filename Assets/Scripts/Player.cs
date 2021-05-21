@@ -30,14 +30,20 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (!GameManager.instance.GameOver && GameManager.instance.GameStarted)
         {
+            if (GameManager.instance.PlayerActive)
+            {
+                GameManager.instance.setScore(1f * Time.deltaTime);
+            }
             if (Input.GetMouseButtonDown(0))
             {
                 anim.Play("jump");
                 GameManager.instance.PlayerStartedGame();
                 audioSource.PlayOneShot(sfxJump);
                 rigidBody.useGravity = true;
+                
                 jump = true;
             }
         }
